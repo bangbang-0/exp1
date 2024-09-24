@@ -1,6 +1,3 @@
-//
-// Created by 29789 on 24-9-17.
-//
 
 #include "../include/Student.h"
 

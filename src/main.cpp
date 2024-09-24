@@ -32,7 +32,7 @@ int main() {
             for (int i = 0; i < 4; i++) {
                 tires.push_back(tire);
             }
-            BasePlate basePlate("dp12345678", "SCOUT MINI", 451, 490, 115, 0, "四轮四驱", 10, "公路轮", tires);
+            BasePlate basePlate("dp12345678", "SCOUT MINI", 451, 490, 115, 0, "四轮四驱", 10, tires);
             AGXKit agxKit("AGX Xavier", 32, 512, 64, 32, 32);
             BinocularCamera binocularCamera("RealSense D435i", "D430", "1920 1080", 30, 8758, 90);
             MultiLineLidar multiLineLidar("RS-Helios-16p", 16, 100, 8);
@@ -87,11 +87,6 @@ int main() {
             out << j;
             out.close();
             cout << "保存成功" << endl;
-            cout << "1.保存学生信息和松灵小车信息" << endl;
-            cout << "2.读取学生信息和松灵小车信息" << endl;
-            cout << "0.退出" << endl;
-            cout << "请选择：";
-            cin >> choice;
         }
         if (choice == 2) {
             //in
@@ -131,11 +126,6 @@ int main() {
                     }
                     cin >> c;
                 }
-                cout << "1.保存学生信息和松灵小车信息" << endl;
-                cout << "2.读取学生信息和松灵小车信息" << endl;
-                cout << "0.退出" << endl;
-                cout << "请选择：";
-                cin >> choice;
             }
             catch (exception &e) {
                 cout << "文件读取错误" << endl;
@@ -143,5 +133,10 @@ int main() {
                 exit(1);
             }
         }
+        cout << "1.保存学生信息和松灵小车信息" << endl;
+        cout << "2.读取学生信息和松灵小车信息" << endl;
+        cout << "0.退出" << endl;
+        cout << "请选择：";
+        cin >> choice;
     }
 }
