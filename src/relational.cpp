@@ -1,41 +1,41 @@
 #include "../include/relational.h"
 
-relational::relational(Student *student, SongLingCar *songLingCar) {
+relational::relational(Student *student, Car *car) {
     this->student = student;
-    this->songLingCar = songLingCar;
+    this->car = car;
 }
 
 void relational::show() {
     this->student->print();
-    this->songLingCar->print();
+    this->car->print();
 }
 
 ostream &operator<<(ostream &out, const relational &relational) {
     out << *relational.student;
-    out << *relational.songLingCar;
+    out << *relational.car;
     return out;
 }
 
 istream &operator>>(istream &in, relational &relational) {
-    in >> *relational.student >> *relational.songLingCar;
+    in >> *relational.student >> *relational.car;
     return in;
 }
 
 void relational::save() {
     ofstream out("relational" + to_string(time(nullptr)) + ".txt");
     out << *this->student;
-    out << *this->songLingCar;
+    out << *this->car;
     out.close();
 }
 
 json relational::toJson() {
     json j;
     j["student"] = this->student->toJson();
-    j["songLingCar"] = this->songLingCar->toJson();
+    j["Car"] = this->car->toJson();
     return j;
 }
 
 void relational::fromJson(json j) {
     this->student->fromJson(j["student"]);
-    this->songLingCar->fromJson(j["songLingCar"]);
+    this->car->fromJson(j["Car"]);
 }

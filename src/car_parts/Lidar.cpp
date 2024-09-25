@@ -1,76 +1,76 @@
-#include "../include/MultiLineLidar.h"
+#include "car_parts/Lidar.h"
 
-MultiLineLidar::MultiLineLidar() {
+Lidar::Lidar() {
     this->model = "";
     this->channel = 0;
     this->testRange = 0;
     this->powerConsumption = 0;
 }
 
-MultiLineLidar::MultiLineLidar(string model, int channel, int testRange, int powerConsumption) {
+Lidar::Lidar(string model, int channel, int testRange, int powerConsumption) {
     this->model = model;
     this->channel = channel;
     this->testRange = testRange;
     this->powerConsumption = powerConsumption;
 }
 
-MultiLineLidar::~MultiLineLidar() = default;
+Lidar::~Lidar() = default;
 
-void MultiLineLidar::setmodel(string model) {
+void Lidar::setmodel(string model) {
     this->model = model;
 }
 
-string MultiLineLidar::getmodel() {
+string Lidar::getmodel() {
     return this->model;
 }
 
-void MultiLineLidar::setchannel(int channel) {
+void Lidar::setchannel(int channel) {
     this->channel = channel;
 }
 
-int MultiLineLidar::getchannel() {
+int Lidar::getchannel() {
     return this->channel;
 }
 
-void MultiLineLidar::settestRange(int testRange) {
+void Lidar::settestRange(int testRange) {
     this->testRange = testRange;
 }
 
-int MultiLineLidar::gettestRange() {
+int Lidar::gettestRange() {
     return this->testRange;
 }
 
-void MultiLineLidar::setpowerConsumption(int powerConsumption) {
+void Lidar::setpowerConsumption(int powerConsumption) {
     this->powerConsumption = powerConsumption;
 }
 
-int MultiLineLidar::getpowerConsumption() {
+int Lidar::getpowerConsumption() {
     return this->powerConsumption;
 }
 
-void MultiLineLidar::print() {
+void Lidar::print() {
     cout << "型号：" << this->model << endl;
     cout << "通道数：" << this->channel << endl;
     cout << "测试范围：" << this->testRange << "m" << endl;
     cout << "功耗：" << this->powerConsumption << "W" << endl;
 }
 
-ostream &operator<<(ostream &out, const MultiLineLidar &multiLineLidar) {
-    out << "型号：" << multiLineLidar.model << endl;
-    out << "通道数：" << multiLineLidar.channel << endl;
-    out << "测试范围：" << multiLineLidar.testRange << "m" << endl;
-    out << "功耗：" << multiLineLidar.powerConsumption << "W" << endl;
+ostream &operator<<(ostream &out, const Lidar &Lidar) {
+    out << "型号：" << Lidar.model << endl;
+    out << "通道数：" << Lidar.channel << endl;
+    out << "测试范围：" << Lidar.testRange << "m" << endl;
+    out << "功耗：" << Lidar.powerConsumption << "W" << endl;
     return out;
 }
 
-istream &operator>>(istream &in, MultiLineLidar &multiLineLidar) {
-    in >> multiLineLidar.model >> multiLineLidar.channel >> multiLineLidar.testRange
-       >> multiLineLidar.powerConsumption;
+istream &operator>>(istream &in, Lidar &Lidar) {
+    in >> Lidar.model >> Lidar.channel >> Lidar.testRange
+       >> Lidar.powerConsumption;
     return in;
 }
 
-void MultiLineLidar::save() {
-    ofstream out("MultiLineLidar" + to_string(time(nullptr)) + ".txt");
+void Lidar::save() {
+    ofstream out("Lidar" + to_string(time(nullptr)) + ".txt");
     out << "型号：" << this->model << endl;
     out << "通道数：" << this->channel << endl;
     out << "测试范围：" << this->testRange << "m" << endl;
@@ -78,7 +78,7 @@ void MultiLineLidar::save() {
     out.close();
 }
 
-json MultiLineLidar::toJson() {
+json Lidar::toJson() {
     json j;
     j["model"] = this->model;
     j["channel"] = this->channel;
@@ -87,7 +87,7 @@ json MultiLineLidar::toJson() {
     return j;
 }
 
-void MultiLineLidar::fromJson(json j) {
+void Lidar::fromJson(json j) {
     this->model = j["model"];
     this->channel = j["channel"];
     this->testRange = j["testRange"];

@@ -3,12 +3,12 @@
 #include <vector>
 
 #include "Student.h"
-#include "BasePlate.h"
-#include "AGXKit.h"
-#include "BinocularCamera.h"
-#include "MultiLineLidar.h"
-#include "NineAxisGyroscope.h"
-#include "SongLingCar.h"
+#include "car_parts/BasePlate.h"
+#include "car_parts/AGXKit.h"
+#include "car_parts/Camera.h"
+#include "car_parts/Lidar.h"
+#include "car_parts/Gyroscope.h"
+#include "Car.h"
 #include "relational.h"
 
 using namespace std;
@@ -34,35 +34,35 @@ int main() {
             }
             BasePlate basePlate("dp12345678", "SCOUT MINI", 451, 490, 115, 0, "四轮四驱", 10, tires);
             AGXKit agxKit("AGX Xavier", 32, 512, 64, 32, 32);
-            BinocularCamera binocularCamera("RealSense D435i", "D430", "1920 1080", 30, 8758, 90);
-            MultiLineLidar multiLineLidar("RS-Helios-16p", 16, 100, 8);
-            NineAxisGyroscope nineAxisGyroscope("CH110", "NXP");
+            Camera camera("RealSense D435i", "D430", "1920 1080", 30, 8758, 90);
+            Lidar lidar("RS-Helios-16p", 16, 100, 8);
+            Gyroscope gyroscope("CH110", "NXP");
             LCD lcd("11.6", "super");
-            BatteryModule batteryModule("24V/15Ah", "24V", 2);
+            Battery battery("24V/15Ah", "24V", 2);
 
             //造零件集合
             vector<AGXKit> agxKits;
             agxKits.push_back(agxKit);
-            vector<BinocularCamera> binocularCameras;
-            binocularCameras.push_back(binocularCamera);
-            vector<MultiLineLidar> multiLineLidars;
-            multiLineLidars.push_back(multiLineLidar);
-            vector<NineAxisGyroscope> nineAxisGyroscopes;
-            nineAxisGyroscopes.push_back(nineAxisGyroscope);
+            vector<Camera> Cameras;
+            Cameras.push_back(camera);
+            vector<Lidar> Lidars;
+            Lidars.push_back(lidar);
+            vector<Gyroscope> Gyroscopes;
+            Gyroscopes.push_back(gyroscope);
             vector<LCD> lcds;
             lcds.push_back(lcd);
-            vector<BatteryModule> batteryModules;
-            batteryModules.push_back(batteryModule);
+            vector<Battery> Batterys;
+            Batterys.push_back(battery);
 
             //造10台松灵小车
-            vector<SongLingCar> songLingCars;
+            vector<Car> Cars;
             for (int i = 1; i <= 10; i++) {
                 string id = "cqusn" + to_string(i).insert(0, 16 - to_string(i).length(), '0');
                 basePlate.setID("dp" + to_string(i).insert(0, 8 - to_string(i).length(), '0'));
-                SongLingCar songLingCar(id, basePlate, agxKits, binocularCameras, multiLineLidars, nineAxisGyroscopes,
-                                        lcds,
-                                        batteryModules);
-                songLingCars.push_back(songLingCar);
+                Car Car(id, basePlate, agxKits, Cameras, Lidars, Gyroscopes,
+                                lcds,
+                                Batterys);
+                Cars.push_back(Car);
             }
             vector<Student> students;
             for (int i = 1; i <= 10; ++i) {
@@ -74,7 +74,7 @@ int main() {
             //关联学生和松灵小车
             vector<relational> relationals;
             for (int i = 0; i < 10; i++) {
-                relational relational(&students[i], &songLingCars[i]);
+                relational relational(&students[i], &Cars[i]);
                 relationals.push_back(relational);
             }
 
@@ -96,7 +96,7 @@ int main() {
                 in >> j;
                 vector<relational> relationals;
                 for (auto x: j) {
-                    relational relational(new Student(), new SongLingCar());
+                    relational relational(new Student(), new Car());
                     relational.fromJson(x);
                     relationals.push_back(relational);
                 }
@@ -109,7 +109,7 @@ int main() {
                 while (c == 'n' || c == 'p') {
                     if (c == 'n') {
                         if (index == 9) {
-                            cout << "已经是最后一辆小车了" << endl;
+                            cout << "已经是最后一辆小车了,按0返回" << endl;
                         }
                         if (index < 9) {
                             index++;

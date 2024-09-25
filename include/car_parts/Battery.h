@@ -2,27 +2,27 @@
 // Created by 29789 on 24-9-17.
 //
 
-#ifndef BATTERYMODULE_H
-#define BATTERYMODULE_H
+#ifndef Battery_H
+#define Battery_H
 
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "../nlohmann/json.hpp"
+#include "../../nlohmann/json.hpp"
 
 using namespace std;
 using json = nlohmann::json;
 
-class BatteryModule {
+class Battery {
 private:
     string parameter;
     string externalPowerSupply;
     int chargingTime;
 
 public:
-    BatteryModule();
-    BatteryModule(string parameter, string externalPowerSupply, int chargingTime);
-    ~BatteryModule();
+    Battery();
+    Battery(string parameter, string externalPowerSupply, int chargingTime);
+    ~Battery();
 
     void setparameter(string parameter);
     string getparameter();
@@ -33,12 +33,12 @@ public:
 
     void print();
 
-    friend ostream &operator<<(ostream &out, const BatteryModule &batteryModule);
-    friend istream &operator>>(istream &in, BatteryModule &batteryModule);
+    friend ostream &operator<<(ostream &out, const Battery &Battery);
+    friend istream &operator>>(istream &in, Battery &Battery);
 
     void save();
     json toJson();
     void fromJson(json j);
 };
 
-#endif // BATTERYMODULE_H
+#endif // Battery_H

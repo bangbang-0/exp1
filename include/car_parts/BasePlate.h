@@ -9,8 +9,8 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "../nlohmann/json.hpp"
-#include "Tire.h" // 确保包含 Tire 类的头文件
+#include "../../nlohmann/json.hpp"
+#include "Tire.h"
 
 using namespace std;
 using json = nlohmann::json;
