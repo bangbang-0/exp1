@@ -35,4 +35,6 @@ retrieve_files(SOURCES src)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(exp1 ${SOURCES})
+
+
+add_executable(exp1 ${SOURCES} main.cpp)

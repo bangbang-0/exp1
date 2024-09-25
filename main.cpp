@@ -2,14 +2,14 @@
 #include <fstream>
 #include <vector>
 
-#include "../include/Student.h"
-#include "../include/BasePlate.h"
-#include "../include/AGXKit.h"
-#include "../include/BinocularCamera.h"
-#include "../include/MultiLineLidar.h"
-#include "../include/NineAxisGyroscope.h"
-#include "../include/SongLingCar.h"
-#include "../include/relational.h"
+#include "Student.h"
+#include "BasePlate.h"
+#include "AGXKit.h"
+#include "BinocularCamera.h"
+#include "MultiLineLidar.h"
+#include "NineAxisGyroscope.h"
+#include "SongLingCar.h"
+#include "relational.h"
 
 using namespace std;
 using namespace nlohmann;
@@ -117,7 +117,7 @@ int main() {
                         }
                     } else if (c == 'p') {
                         if (index == 0) {
-                            cout << "已经是第一辆小车了" << endl;
+                            cout << "已经是第一辆小车了,按0返回" << endl;
                         }
                         if (index > 0) {
                             index--;
