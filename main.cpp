@@ -83,7 +83,7 @@ int main() {
             for (auto x: relationals) {
                 j.push_back(x.toJson());
             }
-            ofstream out("out.txt");
+            ofstream out("out.json");
             out << j;
             out.close();
             cout << "保存成功" << endl;
@@ -91,7 +91,7 @@ int main() {
         if (choice == 2) {
             //in
             try {
-                ifstream in("out.txt");
+                ifstream in("out.json");
                 json j;
                 in >> j;
                 vector<relational> relationals;
